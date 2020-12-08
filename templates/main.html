@@ -1,0 +1,68 @@
+<!doctype html5>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<html>
+   <body>
+   
+    <table class="table">
+        <tr>
+            <th>t</th>
+            <th>L<sub>ql</sub>(t)</th>
+            <th>L<sub>l1</sub>(t)</th>
+            <th>L<sub>l2</sub>(t)</th>
+            <th>L<sub>qs</sub>(t)</th>
+            <th>L<sub>s</sub>(t)</th>
+            <th>L<sub>t</sub>(t)</th>
+            <th>Loader Queue</th>
+            <th>Scaler Queue</th>
+            <th>Future Event List</th>
+            <th>B<sub>l1</sub></th>
+            <th>B<sub>l2</sub></th>
+            <th>B<sub>s</sub></th>
+        </tr> 
+
+        {% for row in results %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>
+                <ul>
+                    {% for truck in row[7] %}
+                    <li>{{ truck.id }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    {% for truck in row[8] %}
+                    <li>{{ truck.id }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    {% for event in row[9] %}
+                    <li>({{ event.id }}, {{ event.t }}, {{ event.truck.id }})</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>{{ row[10] }}</td>
+            <td>{{ row[11] }}</td>
+            <td>{{ row[12] }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <p>Loader 1 Utilization Percentage : {{ loader1 }}</p>
+    <p>Loader 2 Utilization Percentage : {{ loader2 }}</p>
+    <p>Scaler Utilization Percentage : {{ scaler }}</p>
+      
+   </body>
+</html>
