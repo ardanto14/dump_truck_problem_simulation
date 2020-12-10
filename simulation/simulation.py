@@ -111,10 +111,6 @@ class DumpTruckSimulator():
 
         loader_queue = LinkedList()
         scaler_queue = LinkedList()
-        truck_list = [None, None, None, None, None, None]
-
-        for i in range(6):
-            truck_list[i] = Truck('DT' + str(i))
 
         
         for i in range(self.loader_queue_count):
@@ -123,10 +119,6 @@ class DumpTruckSimulator():
         for i in range(self.loader_queue_count, self.loader_queue_count + self.scaler_queue_count):
             scaler_queue.insert(Truck('DT' + str(i)))
 
-        
-        
-
-        scaler_queue.insert(truck_list[5])
 
         loader1 = Server([10, 5, 5, 10, 15, 10, 10])
         loader2 = Server([10, 5, 5, 10, 15, 10, 10])
@@ -220,11 +212,7 @@ class DumpTruckSimulator():
 
             if scaler_queue.length > max_queue_scaler:
                 max_queue_scaler = scaler_queue.length
-
-            
-
-
-            
+       
             result.append([event.t,
                 loader_queue.length,
                 loader1.serving,
