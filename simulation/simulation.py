@@ -164,6 +164,8 @@ class DumpTruckSimulator():
                 loader2.busy_time,
                 scaler.busy_time])
 
+        max_queue_loader = 0
+        max_queue_scaler = 0
 
         for i in range(0, num_event-1):
 
@@ -213,6 +215,12 @@ class DumpTruckSimulator():
                 heapq.heappush(future_event_list, Event('DS', event.t + scaler.get_delay(), truck))
                 scaler.serving += 1
 
+            if loader_queue.length > max_queue_loader:
+                max_queue_loader = loader_queue.length
+
+            if scaler_queue.length > max_queue_scaler:
+                max_queue_scaler = scaler_queue.length
+
             
 
 
@@ -231,6 +239,6 @@ class DumpTruckSimulator():
                 loader2.busy_time,
                 scaler.busy_time])
 
-        return result
+        return result, max_queue_scaler, max_queue_loader
 
         

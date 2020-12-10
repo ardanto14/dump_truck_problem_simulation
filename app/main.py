@@ -29,13 +29,15 @@ def result():
 
    
 
-   result = simulator.run_simulation(num_event)
+   result, max_scaler, max_loader = simulator.run_simulation(num_event)
 
 
 
    
    return render_template('main.html', results = result, loader1 = result[-1][10] / result[-1][0],
       loader2 = result[-1][11] / result[-1][0],
-      scaler = result[-1][12] / result[-1][0])
+      scaler = result[-1][12] / result[-1][0],
+      max_scaler = max_scaler,
+      max_loader = max_loader)
 
 
